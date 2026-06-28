@@ -1,0 +1,300 @@
+:root {
+  --primary-blue: #0bb2d3;
+  --accent-green: #00d084;
+  --primary-lightgreen: #7bdcb5;
+  --brand-pink: #ec008e;
+  --primary-purple: #662d91;
+  --primary-orange: #ff6900;
+  --font-family-header: 'Poppins';
+  --font-family-body: 'Inter';
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family-body), sans-serif;
+  background-color: #f4f1f9;
+  color: #3a3a3a;
+  min-height: 100vh;
+}
+
+.admin-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* ---------- Login view ---------- */
+.login-card {
+  max-width: 360px;
+  margin: 80px auto 0;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.login-logo {
+  height: 50px;
+  margin: 0 auto 1.5rem;
+}
+
+.login-card h1 {
+  font-family: var(--font-family-header), sans-serif;
+  color: var(--primary-purple);
+  font-size: 22px;
+  margin-bottom: 0.5rem;
+}
+
+.login-subtitle {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 1.5rem;
+}
+
+#loginForm {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+#loginForm label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+#loginForm input {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.65rem;
+  font-size: 0.95rem;
+}
+
+#loginForm input:focus {
+  outline: 2px solid var(--primary-purple);
+  outline-offset: 1px;
+}
+
+#loginForm button {
+  margin-top: 1.25rem;
+  background-color: var(--primary-purple);
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#loginForm button:hover {
+  background-color: #4f2270;
+}
+
+.login-error {
+  color: #c0392b;
+  font-size: 0.85rem;
+  margin-top: 0.75rem;
+  min-height: 1.2em;
+}
+
+/* ---------- Admin panel ---------- */
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.admin-logo {
+  height: 44px;
+}
+
+.logout-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 1px solid var(--primary-purple);
+  color: var(--primary-purple);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: var(--primary-purple);
+  color: #ffffff;
+}
+
+.tab-row {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  font-family: var(--font-family-header), sans-serif;
+  color: var(--primary-purple);
+  cursor: pointer;
+}
+
+.tab-btn.is-active {
+  background-color: var(--primary-purple);
+  color: #ffffff;
+  border-color: var(--primary-purple);
+}
+
+.upload-card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.file-input-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 2px dashed #ccc;
+  border-radius: 6px;
+  padding: 1rem;
+  cursor: pointer;
+  color: #777;
+  margin-bottom: 1rem;
+}
+
+.file-input-label:hover {
+  border-color: var(--primary-purple);
+  color: var(--primary-purple);
+}
+
+.alt-text-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.alt-text-input {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.6rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+}
+
+.alt-text-input:focus {
+  outline: 2px solid var(--primary-purple);
+  outline-offset: 1px;
+}
+
+.alt-text-hint {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+#uploadBtn {
+  background-color: var(--brand-pink);
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.65rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#uploadBtn:disabled {
+  background-color: #ddd;
+  color: #999;
+  cursor: not-allowed;
+}
+
+#uploadBtn:not(:disabled):hover {
+  background-color: #c9007a;
+}
+
+.upload-message {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  min-height: 1.2em;
+}
+
+.upload-message.is-success {
+  color: #1e7e34;
+}
+
+.upload-message.is-error {
+  color: #c0392b;
+}
+
+#listHeading {
+  font-family: var(--font-family-header), sans-serif;
+  color: var(--primary-purple);
+  font-size: 20px;
+  margin-bottom: 1rem;
+}
+
+.admin-image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.admin-image-card {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.admin-image-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.admin-delete-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.65);
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-delete-btn:hover {
+  background-color: #c0392b;
+}
+
+.admin-empty-message {
+  color: #888;
+  font-size: 0.9rem;
+  grid-column: 1 / -1;
+}

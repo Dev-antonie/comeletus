@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Come Let Us | Admin</title>
+  <link rel="stylesheet" href="admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+  <!-- This page is deliberately NOT linked anywhere on the
+       public site. It's only reachable by typing the URL
+       directly. Login is still required regardless, but
+       there's no reason to make it easy to stumble onto. -->
+</head>
+<body>
+
+  <div class="admin-wrap">
+
+    <!-- ============================================
+         LOGIN VIEW — shown until a session is confirmed
+         ============================================ -->
+    <section id="loginView" class="login-card">
+      <img src="images/come_let_us_logo.png" alt="Come Let Us logo" class="login-logo">
+      <h1>Admin Login</h1>
+      <p class="login-subtitle">Sign in to manage gallery photos and campaign flyers.</p>
+
+      <form id="loginForm">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" required autocomplete="username">
+
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" required autocomplete="current-password">
+
+        <button type="submit">Log In</button>
+        <p class="login-error" id="loginError"></p>
+      </form>
+    </section>
+
+    <!-- ============================================
+         ADMIN PANEL — shown once logged in
+         ============================================ -->
+    <section id="adminPanel" class="admin-panel" hidden>
+      <header class="admin-header">
+        <img src="images/come_let_us_logo.png" alt="Come Let Us logo" class="admin-logo">
+        <button id="logoutBtn" class="logout-btn" type="button">
+          <i class="ph ph-sign-out"></i> Log Out
+        </button>
+      </header>
+
+      <div class="tab-row">
+        <button class="tab-btn is-active" data-bucket="gallery" type="button">Gallery</button>
+        <button class="tab-btn" data-bucket="flyers" type="button">Flyers</button>
+      </div>
+
+      <div class="upload-card">
+        <label for="fileInput" class="file-input-label">
+          <i class="ph ph-upload-simple"></i>
+          <span id="fileInputText">Choose an image to upload</span>
+        </label>
+        <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" hidden>
+
+        <label for="altTextInput" class="alt-text-label">Image description</label>
+        <input type="text" id="altTextInput" class="alt-text-input"
+          placeholder="e.g. Volunteers at the August awareness event">
+        <p class="alt-text-hint">This is read aloud by screen readers and helps with search engines — describe what's actually in the photo.</p>
+
+        <button id="uploadBtn" type="button" disabled>Upload</button>
+        <p class="upload-message" id="uploadMessage"></p>
+      </div>
+
+      <h2 id="listHeading">Gallery Photos</h2>
+      <div class="admin-image-grid" id="adminImageGrid">
+        <!-- Populated dynamically with each image + a delete button -->
+      </div>
+    </section>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

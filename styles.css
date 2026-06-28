@@ -1,6 +1,3 @@
-/* ============================================
-   DESIGN TOKENS
-   ============================================ */
 :root {
   --primary-blue: #0bb2d3;
   --accent-green: #00d084;
@@ -207,9 +204,6 @@ nav,
   scroll-margin-top: var(--header-height);
 }
 
-/* ============================================
-   SCROLL REVEAL ANIMATIONS
-   ============================================ */
 .reveal-on-scroll {
   opacity: 1;
   transform: translateY(0);
@@ -429,9 +423,6 @@ main {
   margin-bottom: 0.5rem;
 }
 
-/* ============================================
-   GALLERY + FLYERS
-   ============================================ */
 .gallery-section {
   background-color: var(--brand-pink);
   color: #ffffff;
@@ -505,8 +496,8 @@ main {
 @media (min-width: 768px) {
   .gallery-strip {
     flex-direction: row;
-    gap: 20px;          /* Restored a nice spacing between your cards */
-    overflow-x: auto;   /* Allows smooth horizontal track scrolling */
+    gap: 20px;         
+    overflow-x: auto;   
     scroll-behavior: smooth;
     width: 100%;
     padding: 20px 0;
@@ -800,9 +791,9 @@ main {
   color: var(--primary-blue);
 }
 
-/* ============================================
-   VIDEOS
-   ============================================ */
+.videos-section {
+  background-color: rgb(252, 252, 252);
+}
 .videos-section h2 {
   text-align: center;
 }

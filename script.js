@@ -1,10 +1,11 @@
 // ============================================
 // SUPABASE SETUP
+// Paste your real Project URL and anon key directly in
+// this file on your machine — never back into chat.
 // ============================================
 const SUPABASE_URL = 'https://vmobswdwoxnnqcowynwi.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZtb2Jzd2R3b3hubnFjb3d5bndpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0MTYwMTAsImV4cCI6MjA5Nzk5MjAxMH0.dPij6QbLlcJb1KGJvIVQWSWD5QR1mPC0gbfiALnHjKc';
 
-// Use a unique name to avoid colliding with the CDN's global 'supabase' object
 let supabaseClient;
 if (typeof window.supabaseInstance === 'undefined') {
   supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -45,21 +46,14 @@ async function loadImagesFromBucket(bucketName, containerId) {
   container.classList.remove('is-revealed');
 
   const visibleImageCount = 3;
-  const validFiles = data.filter(file => file.name !== '.emptyFolderPlaceholder');
+  const validFiles = data.filter((file) => file.name !== '.emptyFolderPlaceholder');
 
   validFiles.forEach((file, index) => {
-    const { data: urlData } = supabaseClient.storage
-      .from(bucketName)
-      .getPublicUrl(file.name);
+    const { data: urlData } = supabaseClient.storage.from(bucketName).getPublicUrl(file.name);
 
     const img = document.createElement('img');
     img.src = urlData.publicUrl;
 
-    // Prefer the real description typed into admin.html at
-    // upload time. The filename-guessing fallback below only
-    // matters for images uploaded before this feature existed
-    // (e.g. directly through the Supabase dashboard), which
-    // have no metadata attached.
     if (file.metadata?.altText) {
       img.alt = file.metadata.altText;
     } else {
@@ -180,9 +174,7 @@ document.querySelectorAll('.gallery-arrow').forEach((button) => {
 // LOAD MORE INITIALIZER
 // ============================================
 function initializeLoadMoreButton(containerId) {
-  const button = document.querySelector(
-    `.load-more-btn[data-target="${containerId}"]`,
-  );
+  const button = document.querySelector(`.load-more-btn[data-target="${containerId}"]`);
   const strip = document.getElementById(containerId);
   if (!button || !strip) return;
 
@@ -236,14 +228,39 @@ function attachFlyerLightbox(container) {
 
 // ============================================
 // CONTACT FORM
+// Submits to Formspree via fetch() instead of a normal page
+// reload, so the person sees a success/error message right
+// on the page rather than being navigated away.
 // ============================================
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-  contactForm.addEventListener('submit', (event) => {
+  contactForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-    alert(
-      'This form is not connected to anything yet. For now, please use the email link above to get in touch.',
-    );
+
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.textContent;
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { Accept: 'application/json' },
+      });
+
+      if (response.ok) {
+        alert("Thanks for reaching out — we've received your message and will get back to you soon.");
+        contactForm.reset();
+      } else {
+        alert('Something went wrong sending your message. Please try again, or email us directly.');
+      }
+    } catch (error) {
+      alert('Something went wrong sending your message. Please check your connection and try again.');
+    }
+
+    submitButton.disabled = false;
+    submitButton.textContent = originalButtonText;
   });
 }
 
